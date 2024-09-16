@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hdf5converter"
+version = "0.0.1"
+description = "convert hdf5 files"
+readme = "README.md"
+authors = [{ name = "Rolf Harkes", email = "r.harkes@nki.nl" }]
+classifiers = [
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["hdf5"]
+dependencies = [
+    "h5py",
+    "hdf5plugin"
+]
+requires-python = ">=3.10,<3.13"
+
+
+[tool.black]
+line-length = 88
+target-version = ['py310', 'py311', 'py312']
+
+[tool.mypy]
+python_version = '3.12'
+mypy_path = "src"
+packages = "hdf5converter"
+strict = true
+
+[[tool.mypy.overrides]]
+module = "h5py.*"
+ignore_missing_imports  = true
+
+[[tool.mypy.overrides]]
+module = "hdf5plugin.*"
+ignore_missing_imports  = true
